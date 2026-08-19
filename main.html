@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Roboto+Condensed:wght@400;700;900&family=Spline+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <title>Tap-Donkey</title>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+     HEADER
+    ====================================== -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Левая часть -->
+                <div class="header__inner-left">
+                    <a href="#" class="logo-link">
+                        <img
+                            src="images/Roblox_29.07.2025_17_32_22-removebg-preview.png"
+                            alt="Logo"
+                            class="logo-img"
+                        >
+                    </a>
+                    <h1 class="header-title">DZOMA_MEDVED</h1>
+                </div>
+
+                <!-- Бургер-кнопка для мобильных -->
+                <button class="header__burger" id="burgerBtn" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Правая часть (Навигация) -->
+                <div class="header__inner-right">
+                    <nav class="nav" id="headerNav">
+                        <ul class="list_nav-items">
+                            <li>
+                                <a href="#" class="list_nav-links">Ютуб канал</a>
+                            </li>
+                            <li>
+                                <a href="#" class="list_nav-links">Основной ТГК</a>
+                            </li>
+                            <li>
+                                <a href="#" class="list_nav-links">Чат с трейдами</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+<!-- =====================================
+     ABOUT GAME
+====================================== -->
+<section class="game_about">
+    <div class="container">
+        <div class="game_about-inner">
+            <h2 class="game_about-title">Об игре</h2>
+            <p class="game_about-description">
+                В данной игре вы должны зарабатывать монеты за клик. Тот, у кого этих монет будет больше за определенное время, выигрывает призы от DZOMA_MEDVED.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- =====================================
+         GAME
+    ====================================== -->
+
+     <!-- ОВЕРЛЕЙ РЕГИСТРАЦИИ -->
+    <div class="registration-overlay hidden" id="registrationOverlay">
+        <form class="registration-modal" id="registrationForm">
+            <img src="images/Roblox_29.07.2025_17_32_22-removebg-preview.png" alt="" class="registration-icon">
+            <h2>Регистрация</h2>
+            <p class="registration-description">Добро пожаловать на страницу с игрой. Пройдите быструю регистрацию!</p>
+            <div class="input-group">
+                <label for="nickname">Никнейм</label>
+                <input type="text" id="nickname" placeholder="Введите никнейм" required>
+            </div>
+            <div class="input-group">
+                <label for="robloxUsername">Roblox Username</label>
+                <input type="text" id="robloxUsername" placeholder="@username" required>
+            </div>
+            <p class="error-text" id="registrationError"></p>
+            <button type="submit" class="registration-button">Начать игру</button>
+        </form>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР ИГРЫ -->
+    <section class="game">
+        <div class="game-inner">
+
+            <!-- =================================
+                 1. ЭКРАН FARM (Главный экран с кликером)
+            ================================== -->
+            <div class="tab-view" id="tabFarm">
+                
+                <!-- Статистика сверху -->
+                <div class="game-top-stats">
+
+
+                <!-- Profit per click -->
+
+                <div class="game-stat">
+
+                    <div class="game-stat-title">
+                        Количество кликов
+                    </div>
+
+                    <div class="game-stat-value">
+
+                        <img src="images/click.png" alt="" class="coin-img">
+
+                        <strong id="profitPerClick">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Coins for upgrade -->
+
+                <div class="game-stat">
+
+                    <div class="game-stat-title">
+                        Монет для апгрейда
+                    </div>
+
+                    <div class="game-stat-value">
+
+                        <strong id="coinsForUpgrade">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Income per hour -->
+
+                <div class="game-stat">
+
+                    <div class="game-stat-title">
+                        Доход за час
+                    </div>
+
+                    <div class="game-stat-value">
+
+                        <img src="images/donkey-coin.png" alt="" class="coin-small">
+
+                        <strong id="incomePerHour">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+                <!-- Баланс монет -->
+                <div class="balance">
+                    <img src="images/donkey-coin.png" alt="Coin" class="balance-coin">
+                    <span id="coinBalance">0.00</span>
+                </div>
+
+                <!-- Уровень и прогресс-бар -->
+                <div class="level-info">
+                    <div class="level-row">
+                        <span id="playerLevelName">Junior Trader</span>
+                        <span>
+                            <span id="levelCurrent">0</span>/100
+                        </span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="level-progress-fill" id="levelProgress"></div>
+                    </div>
+                </div>
+
+                <!-- Главная кнопка-осел -->
+                <div class="donkey-area">
+                    <button class="donkey-button" id="donkeyButton" type="button" aria-label="Нажать на осла">
+                        <div class="donkey-circle">
+                            <img src="images/donkey.jpg" alt="Donkey" class="donkey-image">
+                        </div>
+                    </button>
+                    <div class="click-effects" id="clickEffects"></div>
+                </div>
+
+                <!-- Информация о игроке -->
+                <div class="player-data">
+                    <div class="player-data-name">
+                        <span class="player-data-label">Игрок</span>
+                        <strong id="playerName">Игрок</strong>
+                    </div>
+                    <div class="player-data-roblox">
+                        <span class="player-data-label">Roblox</span>
+                        <strong id="playerRoblox">@username</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- =================================
+                2. ЭКРАН UPGRADES (STORE)
+            ================================== -->
+            <div class="tab-view hidden" id="tabUpgrades">
+                <h2 class="view-title">⚡Улучшения</h2>
+
+                <div class="cards-list">
+                    <div class="upgrade-card">
+                        <div class="card-info">
+                            <strong>Мульти-клик</strong>
+                            <span>+1 монета за клик</span>
+                        </div>
+                        <button type="button" class="buy-button" data-id="multiclick" data-type="click" data-amount="1" data-cost="100">
+                            <span class="cost-val">100</span>
+                            <img src="images/donkey-coin.png" alt="Coin" class="coin-small">
+                        </button>
+                    </div>
+
+                    <div class="upgrade-card">
+                        <div class="card-info">
+                            <strong>Пассивный майнинг</strong>
+                            <span>+100 монет в час</span>
+                        </div>
+                        <button type="button" class="buy-button" data-id="passive" data-type="income" data-amount="100" data-cost="500">
+                            <span class="cost-val">500</span>
+                            <img src="images/donkey-coin.png" alt="Coin" class="coin-small">
+                        </button>
+                    </div>
+
+                    <div class="upgrade-card">
+                        <div class="card-info">
+                            <strong>Мега-клик</strong>
+                            <span>+5 монет за клик</span>
+                        </div>
+                        <button type="button" class="buy-button" data-id="megaclick" data-type="click" data-amount="5" data-cost="1000">
+                            <span class="cost-val">1000</span>
+                            <img src="images/donkey-coin.png" alt="Coin" class="coin-small">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- =================================
+            3. ЭКРАН LEADERBOARD
+            ================================== -->
+            <div class="tab-view hidden" id="tabLeaderboard">
+                <h2 class="view-title">🏆 Лидерборд (Топ-20)</h2>
+
+                <!-- Список Топ-20 -->
+                <div class="leaderboard-list" id="leaderboardList">
+                    <div class="loading-text">Загрузка рейтинга...</div>
+                </div>
+
+                <!-- Карточка игрока (отображается только если игрок НЕ в Топ-20) -->
+                <div class="my-rank-card hidden" id="myRankCard">
+                    <div class="leader-item my-rank-item">
+                        <span class="nickname" id="myRankNickname">Загрузка...</span>
+                        <div class="score">
+                            <span id="myRankCoins">0</span>
+                            <img src="images/donkey-coin.png" alt="Coin" class="leader-coin">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- =================================
+                 НИЖНЕЕ МЕНЮ ВКЛАДОК
+            ================================== -->
+            <div class="game-tabs">
+                <button type="button" class="game-tab active" data-tab="farm">
+                    <span class="tab-icon">🐴</span>
+                    <span class="tab-label">ФАРМ</span>
+                </button>
+                <button type="button" class="game-tab" data-tab="upgrades">
+                    <span class="tab-icon">📈</span>
+                    <span class="tab-label">МАГАЗИН</span>
+                </button>
+                <button type="button" class="game-tab" data-tab="quests">
+                    <span class="tab-icon">🏆</span>
+                    <span class="tab-label">ЛИДЕРБОРД</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main-script.js"></script>
+    <script src="js/registration-player.js"></script>
+    <script src="js/levels.js"></script>
+
+</body>
+
+</html>
