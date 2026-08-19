@@ -1,0 +1,1409 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #c2410c;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.nav,
+.nav ul,
+.nav li,
+.list_nav-items,
+.list_nav-items li {
+    list-style: none !important;      /* Полностью убираем точки списка */
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: transparent;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.list_nav-item {
+    margin-top: 37px;
+    color: #f0f0f0;
+    font-size: 20px;
+}
+
+/* Базовые стили шапки */
+.header {
+    background: rgba(20, 15, 30, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 0;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__inner-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.header-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffe600;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.list_nav-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.list_nav-links {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.header__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+/* 3 горизонтальные полоски */
+.header__burger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ffe600;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Анимация превращения в крестик при открытии */
+.header__burger.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.header__burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.header__burger.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.list_nav-links:hover {
+    color: #ffe600;
+}
+
+.game_about-inner {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    width: 1000px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.game_about-title {
+    padding: 10px 10px;
+    color: #333;
+}
+
+.game_about-description {
+    padding: 10px 10px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* .game {
+    width: 460px;
+    height: 750px;
+    background-color: #c9cae8;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.player-info_items {
+    display: flex;
+    gap: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+}
+
+.about-player_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.player-name {
+    color: #f0f0f0;
+}
+
+.player-level {
+    color: #f0f0f0;
+} */
+
+/* =========================
+   GAME
+========================= */
+
+.game {
+    width: 460px;
+    min-height: 850px;
+    margin: 20px auto 40px;
+    padding: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(104, 91, 255, 0.22),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            #d4cbd8 0%,
+            #c9c9df 100%
+        );
+
+    border-radius: 22px;
+
+    border: 2px solid #222;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.game-inner {
+    position: relative;
+    width: 100%;
+    min-height: 850px;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   TOP STATS
+========================= */
+
+.game-top-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.game-stat {
+    min-height: 82px;
+    padding: 10px 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background: linear-gradient(
+        145deg,
+        #765394,
+        #694985
+    );
+
+    border: 2px solid #151515;
+    border-radius: 17px;
+
+    box-shadow:
+        0 4px 0 #111,
+        inset 0 1px 0 rgba(255,255,255,0.15);
+
+    text-align: center;
+}
+
+.game-stat-title {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.1;
+
+    color: #ffe83b;
+
+    text-shadow:
+        2px 2px 0 #111;
+}
+
+.game-stat:nth-child(2) .game-stat-title {
+    color: #ff735c;
+}
+
+.game-stat:nth-child(3) .game-stat-title {
+    color: #f22aff;
+}
+
+.game-stat-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 6px;
+
+    font-size: 21px;
+    color: white;
+
+    text-shadow:
+        2px 2px 0 #111;
+}
+
+.coin-img {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    bottom: 3px;
+    right: 3px;
+}
+
+.coin-small {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.coin-small-2 {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+}
+
+/* =========================
+   BALANCE
+========================= */
+
+.balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 28px;
+
+    color: white;
+
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+
+    text-shadow:
+        3px 3px 0 #111,
+        -1px -1px 0 #111;
+}
+
+.balance-coin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        #fff000,
+        #ffb300
+    );
+
+    border: 3px solid #111;
+
+    font-size: 42px;
+
+    box-shadow:
+        inset 0 0 0 3px #ffdb00,
+        0 4px 0 #111;
+}
+
+
+/* =========================
+   LEVEL
+========================= */
+
+.level-info {
+    margin-top: 25px;
+    padding: 0 5px;
+}
+
+.level-row {
+    display: flex;
+    justify-content: space-between;
+
+    color: white;
+
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 21px;
+    font-weight: 900;
+
+    text-shadow:
+        2px 2px 0 #111;
+}
+
+.level-progress {
+    width: 100%;
+    height: 28px;
+
+    margin-top: 7px;
+
+    overflow: hidden;
+
+    background: #080808;
+
+    border: 2px solid #111;
+    border-radius: 12px;
+
+    box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.7);
+}
+
+.level-progress-fill {
+    width: 65%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff500,
+            #ff7d3d,
+            #ff009d
+        );
+
+    border-radius: 8px;
+
+    transition: width 0.3s ease;
+}
+
+
+/* =========================
+   DONKEY AREA
+========================= */
+
+.donkey-area {
+    position: relative;
+
+    width: 100%;
+    height: 470px;
+
+    margin-top: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* свечение вокруг осла */
+
+.donkey-area::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(115, 109, 255, 0.45),
+            transparent 65%
+        );
+
+    filter: blur(12px);
+}
+
+
+/* =========================
+   DONKEY
+========================= */
+
+.donkey-button {
+    position: relative;
+
+    width: 310px;
+    height: 310px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        transform 0.08s ease;
+}
+
+.donkey-button:active {
+    transform: scale(0.94);
+}
+
+.donkey-circle {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #363d8d,
+            #181a35
+        );
+
+    border: 8px solid #403bea;
+
+    box-shadow:
+        0 0 0 2px #111,
+        0 0 35px rgba(62, 54, 255, 0.75),
+        inset 0 0 40px rgba(0,0,0,0.5);
+}
+
+.donkey-image {
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    object-fit: contain;
+
+    user-select: none;
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 10px 10px rgba(0,0,0,0.45));
+}
+
+
+/* =========================
+   CLICK BUTTON
+========================= */
+
+.side-button {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border: 2px solid #111;
+
+    background: rgba(255,255,255,0.65);
+
+    box-shadow:
+        0 4px 0 #111;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.side-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #111;
+}
+
+.click-button {
+    left: 25px;
+    top: 145px;
+}
+
+.click-hand {
+    font-size: 32px;
+}
+
+.settings-button {
+    right: 25px;
+    top: 145px;
+
+    font-size: 32px;
+}
+
+
+/* =========================
+   CLICK EFFECTS
+========================= */
+
+.click-effects {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+.click-number {
+    position: absolute;
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: 900;
+
+    text-shadow:
+        2px 2px 0 #111;
+
+    animation:
+        coinFloat 0.8s ease-out forwards;
+}
+
+@keyframes coinFloat {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.25);
+    }
+}
+
+
+/* =========================
+   GET COINS
+========================= */
+
+.get-coins {
+    position: absolute;
+
+    right: 20px;
+    bottom: 105px;
+
+    width: 190px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    background: #ffe500;
+
+    border: 2px solid #111;
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 0 #111;
+}
+
+.get-coins-title {
+    color: #111;
+
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.get-coins-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 27px;
+    color: white;
+
+    text-shadow:
+        2px 2px 0 #111;
+}
+
+
+/* =========================
+   BOTTOM TABS
+========================= */
+
+.game-tabs {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+
+    height: 100px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    padding: 8px;
+
+    box-sizing: border-box;
+
+    background: #755293;
+
+    border: 2px solid #111;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 0 #111;
+}
+
+.game-tab {
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: "Roboto Condensed", sans-serif;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.game-tab.active {
+    background: #53376d;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.game-tab:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.tab-icon {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 25px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+
+    .game {
+        width: calc(100% - 20px);
+
+        min-height: 850px;
+
+        border-radius: 18px;
+    }
+
+    .game-inner {
+        padding: 12px;
+    }
+
+    .game-stat {
+        min-height: 75px;
+    }
+
+    .game-stat-title {
+        font-size: 12px;
+    }
+
+    .game-stat-value {
+        font-size: 17px;
+    }
+
+    .balance {
+        font-size: 40px;
+    }
+
+    .balance-coin {
+        width: 55px;
+        height: 55px;
+        font-size: 34px;
+    }
+
+    .donkey-area {
+        height: 460px;
+    }
+
+    .donkey-button {
+        width: 285px;
+        height: 285px;
+    }
+
+    .click-button {
+        left: 5px;
+    }
+
+    .settings-button {
+        right: 5px;
+    }
+
+    .get-coins {
+        right: 10px;
+    }
+
+    .game-tabs {
+        left: 12px;
+        right: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__burger {
+        display: flex;
+    }
+
+    .header-title {
+        font-size: 18px;
+    }
+
+    .logo-img {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Мобильное выпадающее меню */
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: #181224;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+        padding: 80px 24px 30px;
+        transition: right 0.3s ease;
+        z-index: 99;
+    }
+
+    .header__inner {
+        margin-right: -150px;
+    }
+
+    .nav.active {
+        right: 0;
+    }
+
+    .list_nav-items {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .list_nav-links {
+        font-size: 18px;
+        display: block;
+        width: 100%;
+    }
+
+    .game_about {
+        padding: 16px;
+    }
+
+    .game_about-inner {
+        width: 100%;
+        height: auto;
+        margin: none;
+    }
+
+    .game_about-title {
+        font-size: 22px;
+    }
+
+    .game_about-description {
+        font-size: 18px;
+    }
+}
+
+/* =================================
+   REGISTRATION
+================================= */
+
+.registration-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(10, 8, 20, 0.75);
+
+    backdrop-filter: blur(12px);
+}
+
+.registration-overlay.hidden {
+    display: none;
+}
+
+
+.registration-modal {
+    width: 100%;
+    max-width: 390px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            #765394,
+            #4d3767
+        );
+
+    border: 3px solid #151515;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 0 #111,
+        0 30px 80px rgba(0,0,0,0.5);
+
+    text-align: center;
+
+    animation: registrationAppear 0.35s ease;
+}
+
+
+@keyframes registrationAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.registration-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 110px;
+    height: 100px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #35377d;
+
+    border: 3px solid #111;
+
+    font-size: 48px;
+
+    box-shadow:
+        0 5px 0 #111;
+}
+
+
+.registration-modal h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-family: "Roboto Condensed", sans-serif;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    text-shadow:
+        2px 2px 0 #111;
+}
+
+
+.registration-description {
+    margin: 10px 0 25px;
+
+    color: #ddd;
+
+    font-size: 16px;
+}
+
+
+.input-group {
+    margin-bottom: 16px;
+
+    text-align: left;
+}
+
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.input-group input {
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #171717;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #eee;
+
+    color: #222;
+
+    font-family: "PT Sans", sans-serif;
+
+    font-size: 17px;
+
+    transition: 0.2s;
+}
+
+
+.input-group input:focus {
+    border-color: #ffe600;
+
+    box-shadow:
+        0 0 0 3px rgba(255,230,0,0.25);
+}
+
+
+.registration-error {
+    min-height: 20px;
+
+    margin: 5px 0;
+
+    color: #ff5b5b;
+
+    font-weight: 700;
+}
+
+
+.registration-button {
+    width: 70%;
+
+    height: 58px;
+
+    margin-top: 10px;
+
+    border: 2px solid #111;
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff000,
+            #ffbf00
+        );
+
+    color: #111;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #111;
+
+    transition: 0.1s;
+}
+
+
+.registration-button:hover {
+    filter: brightness(1.08);
+}
+
+
+.registration-button:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 1px 0 #111;
+}
+
+
+/* =================================
+   PLAYER INFO
+================================= */
+
+.player-roblox {
+    margin: 2px 0;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+.player-level {
+    margin: 2px 0;
+
+    color: #ffe600;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.coin {
+    width: 90px;
+    height: 60px;
+    font-size: 16px;  
+} 
+
+.level-progress-fill {
+    width: 0%;
+
+    transition:
+        width 0.15s ease;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff500,
+            #ff7d3d,
+            #ff009d
+        );
+}
+
+.level-up-message {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: 10000;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 25px 40px;
+
+    background: #755293;
+
+    border: 3px solid #111;
+    border-radius: 20px;
+
+    color: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 0 #111,
+        0 20px 50px rgba(0,0,0,0.5);
+
+    animation: levelUpAnimation 1.8s ease forwards;
+}
+
+.level-up-message strong {
+    font-size: 34px;
+
+    color: #ffe600;
+
+    text-shadow:
+        3px 3px 0 #111;
+}
+
+.level-up-message span {
+    margin-top: 5px;
+
+    font-size: 20px;
+}
+
+
+@keyframes levelUpAnimation {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.1);
+    }
+
+    30% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -60%)
+            scale(1.1);
+    }
+}
+
+/* =================================
+   TAB VIEWS (ЭКРАНЫ)
+================================= */
+
+.tab-view {
+    min-height: 520px;
+    padding-top: 10px;
+    animation: fadeInView 0.2s ease-in-out;
+}
+
+.tab-view.hidden {
+    display: none !important;
+}
+
+@keyframes fadeInView {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.view-title {
+    margin: 20px 0 15px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 0 #111;
+}
+
+/* Карточки прокачки */
+.cards-list, .leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 10px;
+    max-height: 440px;
+    /* overflow-y: auto; */
+}
+
+.upgrade-card, .leader-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: linear-gradient(145deg, #765394, #573a72);
+    border: 2px solid #111;
+    border-radius: 16px;
+    box-shadow: 0 4px 0 #111;
+    color: #fff;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.card-info strong {
+    font-size: 18px;
+}
+
+.card-info span {
+    font-size: 13px;
+    color: #ffe600;
+}
+
+.buy-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 16px;
+    border: 2px solid #111;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #fff000, #ffbf00);
+    color: #111;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #111;
+}
+
+.buy-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #111;
+}
+
+/* Лидерборд */
+.leader-item {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.leader-item .score {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffe600;
+}
+
+.leader-coin {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* Запрет выделения и двойного зума при частых кликах */
+.donkey-button, 
+.donkey-image, 
+.donkey-circle {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    touch-action: manipulation;
+}
+
+.loading-text {
+    text-align: center;
+    color: #aaa;
+    padding: 20px 0;
+}
+
+.my-rank-card.hidden {
+    display: none !important;
+}
+
+/* Контейнер экрана лидерборда на всю доступную высоту */
+#tabLeaderboard {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 170px); /* Растягивает экран до нижнего меню */
+}
+
+/* Список заполняет всё свободное место и скроллится */
+#leaderboardList {
+    flex: 1;
+    max-height: none; /* Убираем жесткий лимит высоты */
+    overflow-y: auto;
+    padding-right: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Карточка игрока автоматически прижимается к низу над меню */
+.my-rank-card {
+    margin-top: auto; /* Выталкивает карточку в самый низ */
+    padding-top: 10px;
+    margin-bottom: 10px; /* Минимальный отступ от нижних кнопок */
+    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* Красивая кастомная полоса прокрутки */
+#leaderboardList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#leaderboardList::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+#leaderboardList::-webkit-scrollbar-thumb {
+    background: #ffe600;
+    border-radius: 10px;
+}
+
+.leader-item.my-rank-item {
+    background: #755293;
+    border: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
